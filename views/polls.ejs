@@ -1,0 +1,52 @@
+<% include  layout %>
+<div class="clearfix">
+    <div class="pull-left">
+        <i class="fa fa-pie-chart" aria-hidden="true"></i>
+        <span>Awesome Polls</span>
+    </div>
+    <div class="pull-right">
+        <img src="<%= user.picture %>" style="height: 24px;border-radius: 30px;" />
+        <strong style="margin: 0px 10px"><%= user.nickname %></strong>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+<br>
+<div class="jumbotron">
+    <h1 class="text-center">2016 President Election</h1>
+    <% for (var i = 0; i < poll.length; i++) { %>
+        <% if(poll.estimates.length > 0 ) { %>
+            <div class="col-sm-4">
+                <div class="panel panel-default" style="min-height: 150px;">
+                    <div class="panel-title">
+                        <div class="panel-heading"><%= panel[i].short_title %></div>
+                    </div>
+                    <div class="panel-body" style="min-height: 100px">
+                        <ul class="list-unstyled">
+                            <% for (var i=0;i<person.length;i++) { %>
+                                <li>
+                                    <% if(i==0) { %>
+                                        <p><strong><%= person.choice %></strong></p>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-success" style="width: <%= person[i].value%>" role="progressbar">
+                                                <span><%= person[i].value %></span>
+                                            </div>
+                                        </div>
+                                    <% } else { %>
+                                        <p><span><%= person[i].choice %></span></p>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-info" style="width: <%= person[i].value%>" role="progressbar">
+                                                <span><%= person[i].value %></span>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <a class="btn btn-sm">View Results</a>
+                        <a class="btn btn-sm write-report">Write Report</a>
+                    </div>
+                </div>
+            </div>
+</div>

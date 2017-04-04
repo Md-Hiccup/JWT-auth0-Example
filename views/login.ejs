@@ -1,0 +1,17 @@
+<% include layout %>
+<div id="'root" style="width:280px; margin: 40px auto; padding:10px">
+    <script>
+        var lock = new Auth0Lock('<%= env.AUTH0_CLIENT_ID%>','<%= env.AUTH0_DOMAIN%>', {
+            auth: {
+                redirectUrl: 'http://localhost:3000',
+                responseType: 'code',
+                params: {
+                    scope: 'openid name email picture   ' // Learn about scopes: https://auth0.com/docs/scopes
+                }
+            }
+        });
+        // show lock's login widget
+        //  lock.show({allowedConnections: ["twitter", "facebook"]});
+    </script>
+    <button onclick="lock.show();">Login</button>
+</div>
