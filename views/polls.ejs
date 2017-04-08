@@ -18,14 +18,14 @@
             <div class="col-sm-4">
                 <div class="panel panel-default" style="min-height: 150px;">
                     <div class="panel-title">
-                        <div class="panel-heading"><%= panel[i].short_title %></div>
+                        <div class="panel-heading"><%= poll.short_title %></div>
                     </div>
                     <div class="panel-body" style="min-height: 100px">
                         <ul class="list-unstyled">
                             <% for (var i=0;i<person.length;i++) { %>
                                 <li>
                                     <% if(i==0) { %>
-                                        <p><strong><%= person.choice %></strong></p>
+                                        <p><strong><%= person[i].choice %></strong></p>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" style="width: <%= person[i].value%>" role="progressbar">
                                                 <span><%= person[i].value %></span>

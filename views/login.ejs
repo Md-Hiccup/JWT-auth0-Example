@@ -3,7 +3,7 @@
     <script>
         var lock = new Auth0Lock('<%= env.AUTH0_CLIENT_ID%>','<%= env.AUTH0_DOMAIN%>', {
             auth: {
-                redirectUrl: 'http://localhost:3000',
+                redirectUrl: '<%= env.AUTH0_CALLBACK_URL %>', /* http://localhost:3005/polls */
                 responseType: 'code',
                 params: {
                     scope: 'openid name email picture   ' // Learn about scopes: https://auth0.com/docs/scopes
@@ -11,7 +11,7 @@
             }
         });
         // show lock's login widget
-        //  lock.show({allowedConnections: ["twitter", "facebook"]});
+         lock.show();
     </script>
-    <button onclick="lock.show();">Login</button>
+    <!-- <button onclick="lock.show();">Login</button> -->
 </div>

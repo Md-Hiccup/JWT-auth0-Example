@@ -9,7 +9,7 @@ var request = require('request');
 var env = {
   AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
-  AUTH0_CALLBACK_URL: 'http://localhost:3000/callback'
+  AUTH0_CALLBACK_URL: 'http://localhost:3005/callback'   // process.env.AUTH0_CALLBACK_URL
 };
 
 /* On our router variable, we'll be able to include various methods. For our app we'll only make use of GET requests,
@@ -23,6 +23,9 @@ var env = {
 router.get('/', function(req, res, next) {
  // res.send("You are on the homepage");
   res.render('index', { env: env });
+  //console.log(req.session);
+  //console.log('===================');
+  //console.log(req.cookies);
 });
 /*
 router.post('/', function(req, res, next){

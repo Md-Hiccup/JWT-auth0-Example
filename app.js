@@ -56,6 +56,10 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// We are also adding passport to our middleware flow
+app.use(passport.initialize());
+app.use(passport.session());
+
 /* The .use method is similar to the .set method, where it allows us to set further configurations.
    The .use method also acts as a chain of events that will take place once a request hits our Node Js application.
    First we'll log the request data, parse any incoming data, and so on.        */
@@ -82,7 +86,7 @@ var strategy = new Auth0Strategy({
   domain:      process.env.AUTH0_DOMAIN,
   clientID:    process.env.AUTH0_CLIENT_ID,
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
-  callbackURL: 'http://localhost:3000/callback'             // process.env.AUTH0_CALLBACK_URL ||
+  callbackURL:  process.env.AUTH0_CALLBACK_URL
 }, function(accessToken, refreshToken, extraParams, profile, done){
   // accessToken is the token to call AUTH0 API (not needed in the most cases)
   // extraParams.id_token has the JSON Web Token
@@ -100,9 +104,6 @@ passport.serializeUser(function(user, done){
 passport.deserializeUser(function(user, done){
   done(null, user);
 });
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 
@@ -136,8 +137,8 @@ app.use(function(err, req, res, next) {
  You are free to choose any port you want, so 8080, or 80, or really any number will work.
  The reason 3000 is typically used is because it's the lowest port number that can be used without requiring elevated privileges on Mac/Linux systems.  */
 // server running on port 3000
-app.listen('3000', function(){
-  console.log("server running on port : 3000");
+app.listen('3005', function(){
+  console.log("server running on port : 3005");
 });
 
 module.exports = app;
